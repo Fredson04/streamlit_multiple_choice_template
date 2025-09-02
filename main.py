@@ -62,12 +62,12 @@ st.title("Streamlit Multiple Choice Quiz")
 
 # Progress bar
 progress_bar_value = (st.session_state.current_index + 1) / len(quiz_data)
-st.metric(label="Punkte", value=f"{st.session_state.score} / {len(quiz_data) * 10}")
+st.metric(label="Score", value=f"{st.session_state.score} / {len(quiz_data) * 10}")
 st.progress(progress_bar_value)
 
 # Display the question and answer options
 question_item = quiz_data[st.session_state.current_index]
-st.subheader(f"Frage {st.session_state.current_index + 1}")
+st.subheader(f"Question {st.session_state.current_index + 1}")
 st.title(f"{question_item['question']}")
 st.write(question_item['information'])
 
@@ -78,18 +78,10 @@ options = question_item['options']
 correct_answer = question_item['answer']
 
 if st.session_state.answer_submitted:
-    #for i, option in enumerate(options):
-    #    label = option
-    #    if option == correct_answer:
-    #        st.success(f"{label} (Richtige Antwort)")
-    #    elif option == st.session_state.selected_option:
-    #        st.error(f"{label} (Falsche Antwort)")
-    #    else:
-    #        st.write(label)
     if(isSelectedOptionTrue()):
-        st.success(f"(Richtige Antwort)")
+        st.success(f"(Correct Answer)")
     else:
-        st.error(f"(Falsche Antwort)")
+        st.error(f"(Incorrect Answer)")
         
 else:
     for i, option in enumerate(options):
@@ -101,11 +93,11 @@ st.markdown(""" ___""")
 # Submission button and response logic
 if st.session_state.answer_submitted:
     if st.session_state.current_index < len(quiz_data) - 1:
-        st.button('Nächste', on_click=next_question)
+        st.button('Next', on_click=next_question)
     else:
-        st.write(f"Quiz beendet! Dein Ergebnis ist: {st.session_state.score} / {len(quiz_data) * 10}")
-        if st.button('Neu versuchen', on_click=restart_quiz):
+        st.write(f"Quiz completed! Your score is: {st.session_state.score} / {len(quiz_data) * 10}")
+        if st.button('Restart', on_click=restart_quiz):
             pass
 else:
     if st.session_state.current_index < len(quiz_data):
-        st.button('Antwort abgeben', on_click=submit_answer)
+        st.button('Submit', on_click=submit_answer)
