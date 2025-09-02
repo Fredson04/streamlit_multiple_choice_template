@@ -1,3 +1,6 @@
+# Streamlit Multiple Choice Quiz App
+This app is a simple addition to the project by [linkedin](https://www.linkedin.com/in/hugoalmeidamoreira/). Its a multiple choice quiz that allows for questions to have multiple answers that all need to be submitted. Feel free to use my code.
+The following is the original readme:
 # Streamlit Quiz App
 
 ## Introduction
